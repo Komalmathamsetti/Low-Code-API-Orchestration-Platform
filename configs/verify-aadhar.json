@@ -1,0 +1,20 @@
+{
+  "name": "Aadhaar Verification",
+  "route": "/verify-aadhaar",
+  "method": "POST",
+  "validation": {
+    "aadhaar": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "vendor": {
+    "url": "https://jsonplaceholder.typicode.com/users/2",
+    "method": "GET"
+  },
+  "requestMapping": {},
+  "responseMapping": {
+    "customerName": "name",
+    "email": "email"
+  }
+}

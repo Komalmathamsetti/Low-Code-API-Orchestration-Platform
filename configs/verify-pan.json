@@ -1,0 +1,50 @@
+{
+  "name": "PAN Verification",
+  "route": "/verify-pan",
+  "method": "POST",
+  "validation": {
+    "pan": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "vendor": {
+    "url": "https://jsonplaceholder.typicode.com/users/1",
+    "method": "GET",
+    "headers":{
+       "Content-type" : "application/json"
+    }
+  },
+  "workflow": [
+  {
+    "name": "User API",
+    "enabled": true,
+    "vendor": {
+      "url": "https://jsonplaceholder.typicode.com/users/9999",
+      "method": "GET"
+    }
+  },
+  {
+    "name": "Posts API",
+    "enabled": true,
+    "condition": "previous.success",
+    "vendor": {
+      "url": "https://jsonplaceholder.typicode.com/posts/1",
+      "method": "GET"
+    }
+  }
+  ],
+  "requestMapping": {
+    "id": "pan",
+    "customer": "name"
+  },
+  "responseMapping": {
+    "customerName": "name",
+    "email": "email",
+    "city": "address.city"
+  }
+}
